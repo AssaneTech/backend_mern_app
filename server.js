@@ -9,6 +9,11 @@ import productRoutes from "./routes/product.route.js";
 const PORT = process.env.PORT || 5000
 dotenv.config();
 
+app.use(cors({
+  origin: "mern-app-fawn.vercel.app"
+}));
+
+
 const app = express(); 
 
 app.use(express.json());// allows us to accept JSON data the req.body
