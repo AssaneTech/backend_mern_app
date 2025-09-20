@@ -4,23 +4,34 @@ import {connectDB} from  "./config/db.js";
 import productRoutes from "./routes/product.route.js";
 import cors from "cors";
 
-//import Product from "./models/product.model.js"; 
-//import mongoose from "mongoose";
-const app = express(); 
-const PORT = process.env.PORT || 5000
 dotenv.config();
 
+const app = express(); 
+const PORT = process.env.PORT || 5000
+
 app.use(cors({
-  origin: "mern-app-fawn.vercel.app"
+  origin: "https://mern-app-fawn.vercel.app"
 }));
-
-
-
 
 app.use(express.json());// allows us to accept JSON data the req.body
 app.use("/api/products", productRoutes)
 
-app.listen(PORT, () => {
+
+
+/*app.listen(PORT, () => {
     connectDB();
     console.log("Server started at http://localhost:" + PORT);
-});
+});*/
+
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to start server:", error);
+  }
+};
+
+startServer();
