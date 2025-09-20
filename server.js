@@ -2,10 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import {connectDB} from  "./config/db.js";
 import productRoutes from "./routes/product.route.js";
+import cors from "cors";
 
 //import Product from "./models/product.model.js"; 
 //import mongoose from "mongoose";
-
+const app = express(); 
 const PORT = process.env.PORT || 5000
 dotenv.config();
 
@@ -14,7 +15,7 @@ app.use(cors({
 }));
 
 
-const app = express(); 
+
 
 app.use(express.json());// allows us to accept JSON data the req.body
 app.use("/api/products", productRoutes)
