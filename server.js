@@ -9,11 +9,8 @@ dotenv.config();
 const app = express(); 
 const PORT = process.env.PORT || 5000
 
-app.use(cors({
-  origin: "https://mern-app-fawn.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(cors({ origin: "*" }));
+
 
 app.use(express.json());// allows us to accept JSON data the req.body
 app.use("/api/products", productRoutes)
